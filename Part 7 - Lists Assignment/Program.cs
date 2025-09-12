@@ -58,7 +58,6 @@
                         Console.WriteLine();
                         DisplayNumbers(numbers);
                         Console.WriteLine();
-                        Console.WriteLine();
                         Console.WriteLine("Select what you'd like to do.");
                         Console.WriteLine();
                         Console.WriteLine("Option 1: Sort the list");
@@ -71,12 +70,11 @@
                         Console.WriteLine("Option 8: Print the sum and average of the numbers in the list");
                         Console.WriteLine("Option 9: Determine the most frequently occurring value(s)");
                         Console.WriteLine("Option 10: Quit");
-                        Console.WriteLine("Option 11: ???");
                         Console.WriteLine();
-                        Console.Write("Pick your option (1 - 11): ");
+                        Console.Write("Pick your option (1 - 10): ");
                         choice = Console.ReadLine();
                         choice = choice.Trim();
-                        while (choice != "1" && choice != "2" && choice != "3" && choice != "4" && choice != "5" && choice != "6" && choice != "7" && choice != "8" && choice != "9" && choice != "10" && choice != "11")
+                        while (choice != "1" && choice != "2" && choice != "3" && choice != "4" && choice != "5" && choice != "6" && choice != "7" && choice != "8" && choice != "9" && choice != "10")
                         {
                             Console.Write("Invalid Input. Try again: ");
                             choice = Console.ReadLine();
@@ -88,11 +86,103 @@
                         if (choice == "1")
                         {
                             Console.WriteLine();
-                            Console.WriteLine();
                             Console.WriteLine("Here is an updated list that's sorted from greatest to smallest:");
                             numbers.Sort();
                             Console.WriteLine();
                             DisplayNumbers(numbers);
+                            Console.WriteLine();
+                            Console.WriteLine("Press 'ENTER' to select another option.");
+                            Console.ReadLine();
+                        }
+
+                        // New list
+
+                        else if (choice == "2")
+                        {
+                            numbers.Clear();
+                            for (int i = 0; i < 25; i++)
+                            {
+                                numbers.Add(generator.Next(10, 21));
+                            }
+                            Console.WriteLine();
+                            Console.WriteLine("Here is a new list with different random numbers:");
+                            Console.WriteLine();
+                            DisplayNumbers(numbers);
+                            Console.WriteLine();
+                            Console.WriteLine("Press 'ENTER' to select another option.");
+                            Console.ReadLine();
+                        }
+
+                        // Remove a number
+
+                        else if (choice == "3")
+                        {
+                            int removeNum;
+                            Console.WriteLine();
+                            Console.Write("Enter which number you'd like to be removed: ");
+                            while (!int.TryParse(Console.ReadLine(), out removeNum))
+                            {
+                                Console.Write("Invalid Input. Try again: ");
+                            }
+                            for (int i = 0; i < numbers.Count; i++)
+                            {
+                                if (numbers[i] == removeNum)
+                                {
+                                    numbers.RemoveAt(i);
+                                    i--;
+                                }
+                            }
+                            Console.WriteLine();
+                            Console.WriteLine($"Removing all instances of {removeNum}. Here's an updated list:");
+                            DisplayNumbers(numbers);
+                            Console.WriteLine();
+                            Console.WriteLine("Press 'ENTER' to select another option.");
+                            Console.ReadLine();
+                        }
+
+                        // Add a value
+
+                        else if (choice == "4")
+                        {
+                            int addNum;
+                            Console.WriteLine();
+                            Console.Write("Enter which number you'd like to add: ");
+                            while (!int.TryParse(Console.ReadLine(), out addNum))
+                            {
+                                Console.Write("Invalid Input. Try again: ");
+                            }
+                            numbers.Add(addNum);
+                            Console.WriteLine();
+                            Console.WriteLine($"Adding {addNum} to the list. Here's an updated list:");
+                            DisplayNumbers(numbers);
+                            Console.WriteLine();
+                            Console.WriteLine("Press 'ENTER' to select another option.");
+                            Console.ReadLine();
+                        }
+
+                        // Count the number of occurences
+
+                        else if (choice == "5")
+                        {
+                            int countedValue = 0, countedNum;
+                            Console.WriteLine();
+                            Console.Write("Enter which number you'd like the to be counted: ");
+                            while (!int.TryParse(Console.ReadLine(), out countedNum))
+                            {
+                                Console.Write("Invalid Input. Try again: ");
+                            }
+                            for (int i = 0; i < numbers.Count; i++)
+                            {
+                                if (numbers[i] == countedNum)
+                                {
+                                    countedValue++;
+                                }
+                            }
+                            Console.WriteLine();
+                            Console.WriteLine($"Removing all instances of {countedNum}. Here's an updated list:");
+                            DisplayNumbers(numbers);
+                            Console.WriteLine();
+                            Console.WriteLine("Press 'ENTER' to select another option.");
                             Console.ReadLine();
                         }
                     }
@@ -115,7 +205,7 @@
                 }
                 else
                 {
-                    Console.Write("]");
+                    Console.WriteLine("]");
                 }
             }
         }
