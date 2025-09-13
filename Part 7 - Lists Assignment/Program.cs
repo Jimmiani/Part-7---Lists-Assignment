@@ -334,7 +334,122 @@ namespace Part_7___Lists_Assignment
                             Console.WriteLine("Press 'ENTER' to select another option.");
                             Console.ReadLine();
                         }
+
+                        // Remove by name
+
+                        else if (choice == "2")
+                        {
+                            string removeName;
+                            Console.WriteLine();
+                            Console.Write("Enter the name of the vegetable you'd like to be removed: ");
+                            removeName = Console.ReadLine().ToUpper().Trim();
+                            Console.WriteLine();
+                            if (vegetables.Contains(removeName))
+                            {
+                                vegetables.Remove(removeName);
+                                Console.WriteLine($"Removing {removeName}. Here's an updated list:");
+                                Console.WriteLine();
+                                DisplayVegetables(vegetables);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Vegetable not found.");
+                            }
+                            Console.WriteLine();
+                            Console.WriteLine("Press 'ENTER' to select another option.");
+                            Console.ReadLine();
+                        }
+
+                        // Search
+
+                        else if (choice == "3")
+                        {
+                            string search;
+                            Console.WriteLine();
+                            Console.Write("Enter the name of the vegetable you'd like to search for: ");
+                            search = Console.ReadLine().ToUpper().Trim();
+                            Console.WriteLine();
+                            for (int i = 0; i < vegetables.Count; i++)
+                            {
+                                if (vegetables[i] == search)
+                                {
+                                    Console.WriteLine($"{search} found at position {i + 1}.");
+                                }
+                            }
+                            if (!vegetables.Contains(search))
+                            {
+                                Console.WriteLine("Vegetable not found.");
+                            }
+                            Console.WriteLine();
+                            Console.WriteLine("Press 'ENTER' to select another option.");
+                            Console.ReadLine();
+                        }
+
+                        // Add a vegetable
+
+                        else if (choice == "4")
+                        {
+                            string vegetable;
+                            Console.WriteLine();
+                            Console.Write("Enter the name of the vegetable you'd like to add: ");
+                            vegetable = Console.ReadLine().ToUpper().Trim();
+                            Console.WriteLine();
+                            if (!vegetables.Contains(vegetable))
+                            {
+                                vegetables.Add(vegetable);
+                                Console.WriteLine($"{vegetable} added to list. Here's an updated list:");
+                                Console.WriteLine();
+                                DisplayVegetables(vegetables);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Vegetable already in list.");
+                            }
+                            Console.WriteLine();
+                            Console.WriteLine("Press 'ENTER' to select another option.");
+                            Console.ReadLine();
+                        }
+
+                        // Sort
+
+                        else if (choice == "5")
+                        {
+                            vegetables.Sort();
+                            Console.WriteLine();
+                            Console.WriteLine("Vegetables sorted. Here's an updated list:");
+                            Console.WriteLine();
+                            DisplayVegetables(vegetables);
+                            Console.WriteLine();
+                            Console.WriteLine("Press 'ENTER' to select another option.");
+                            Console.ReadLine();
+                        }
+
+                        // Clear
+
+                        else if (choice == "6")
+                        {
+                            vegetables.Clear();
+                            Console.WriteLine();
+                            Console.WriteLine("Vegetables cleared.");
+                            Console.WriteLine();
+                            Console.WriteLine("Press 'ENTER' to select another option.");
+                            Console.ReadLine();
+                        }
+
+                        // Quit
+
+                        else if (choice == "7")
+                        {
+                            break;
+                        }
                     }
+                }
+
+                // Quit
+
+                else if (choice == "3")
+                {
+                    done = true;
                 }
             }
         }
