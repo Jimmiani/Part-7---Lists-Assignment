@@ -1,4 +1,6 @@
-﻿namespace Part_7___Lists_Assignment
+﻿using System.Diagnostics;
+
+namespace Part_7___Lists_Assignment
 {
     internal class Program
     {
@@ -164,26 +166,107 @@
 
                         else if (choice == "5")
                         {
-                            int countedValue = 0, countedNum;
+                            int countedValue = 0, enteredNum;
                             Console.WriteLine();
                             Console.Write("Enter which number you'd like the to be counted: ");
-                            while (!int.TryParse(Console.ReadLine(), out countedNum))
+                            while (!int.TryParse(Console.ReadLine(), out enteredNum))
                             {
                                 Console.Write("Invalid Input. Try again: ");
                             }
                             for (int i = 0; i < numbers.Count; i++)
                             {
-                                if (numbers[i] == countedNum)
+                                if (numbers[i] == enteredNum)
                                 {
                                     countedValue++;
                                 }
                             }
                             Console.WriteLine();
-                            Console.WriteLine($"Removing all instances of {countedNum}. Here's an updated list:");
-                            DisplayNumbers(numbers);
+                            Console.WriteLine($"{enteredNum} appeared {countedValue} times.");
                             Console.WriteLine();
                             Console.WriteLine("Press 'ENTER' to select another option.");
                             Console.ReadLine();
+                        }
+
+                        // Print the largest value
+
+                        else if (choice == "6")
+                        {
+                            Console.WriteLine($"Here's the largest value of the list: {numbers.Max()}");
+                            Console.WriteLine();
+                            Console.WriteLine("Press 'ENTER' to select another option.");
+                            Console.ReadLine();
+                        }
+
+                        // Print the smallest value
+
+                        else if (choice == "7")
+                        {
+                            Console.WriteLine($"Here's the smallest value of the list: {numbers.Min()}");
+                            Console.WriteLine();
+                            Console.WriteLine("Press 'ENTER' to select another option.");
+                            Console.ReadLine();
+                        }
+
+                        // Print the smallest value
+
+                        else if (choice == "8")
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine($"Here's the sum of the numbers in the list: {numbers.Sum()}");
+                            Console.WriteLine($"Here's the average of the numbers in the list: {Math.Round(numbers.Average(), 2)}");
+                            Console.WriteLine();
+                            Console.WriteLine("Press 'ENTER' to select another option.");
+                            Console.ReadLine();
+                        }
+
+                        // Determine the most frequently occuring value
+
+                        else if (choice == "9")
+                        {
+                            int occurringAmount = 0, highestOccurringNum = 0, approachingNum = 1;
+                            List<int> temp = new List<int>(numbers);
+                            numbers.Sort();
+                            for (int i = 0; i < numbers.Count; i++)
+                            {
+                                if (i == 0)
+                                {
+                                    highestOccurringNum = numbers[i];
+                                    occurringAmount++;
+                                }
+                                else if (highestOccurringNum == numbers[i])
+                                {
+                                    occurringAmount++;
+                                }
+                                else if (highestOccurringNum != numbers[i])
+                                {
+                                    if (numbers[i] == numbers[i - 1])
+                                    {
+                                        approachingNum++;
+                                    }
+                                    else if (numbers[i] != numbers[i - 1])
+                                    {
+                                        approachingNum = 1;
+                                    }
+                                }
+                                if (approachingNum > occurringAmount)
+                                {
+                                    highestOccurringNum = numbers[i];
+                                    occurringAmount = approachingNum;
+                                }
+                            }
+                            numbers = temp;
+                            Console.WriteLine();
+                            Console.WriteLine($"The number '{highestOccurringNum}' appeared the most out of all numbers, with {occurringAmount} appearances.");
+                            Console.WriteLine();
+                            Console.WriteLine("Press 'ENTER' to select another option.");
+                            Console.ReadLine();
+                        }
+
+                        // Quit
+
+                        else if (choice == "10")
+                        {
+                            break;
                         }
                     }
                 }
