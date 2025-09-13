@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel.Design;
+using System.Diagnostics;
 
 namespace Part_7___Lists_Assignment
 {
@@ -8,6 +9,7 @@ namespace Part_7___Lists_Assignment
         {
             Random generator = new Random();
             List<int> numbers = new List<int>();
+            List<string> vegetables = new List<string>(["CARROT", "BEET", "CELERY", "RADISH", "CABBAGE"]);
             bool done = false;
             string choice = "";
             Console.SetWindowSize(150, 40);
@@ -23,8 +25,8 @@ namespace Part_7___Lists_Assignment
             {
                 // Intro
 
-                Console.Clear();
                 choice = "";
+                Console.Clear();
 
                 Console.SetCursorPosition(53, 2);
                 Console.WriteLine("Welcome to my Lists Programming Assignment!");
@@ -270,6 +272,70 @@ namespace Part_7___Lists_Assignment
                         }
                     }
                 }
+
+                // List of Strings
+
+                else if (choice == "2")
+                {
+                    while (true)
+                    {
+                        choice = "";
+                        Console.Clear();
+
+                        Console.WriteLine();
+                        Console.WriteLine("Here's a list of vegetables:");
+                        Console.WriteLine();
+                        DisplayVegetables(vegetables);
+                        Console.WriteLine();
+                        Console.WriteLine("Select what you'd like to do.");
+                        Console.WriteLine();
+                        Console.WriteLine("Option 1: Remove a vegetable by number");
+                        Console.WriteLine("Option 2: Remove a vegetable by name");
+                        Console.WriteLine("Option 3: Search for a vegetable");
+                        Console.WriteLine("Option 4: Add a vegetable to the list");
+                        Console.WriteLine("Option 5: Sort the list");
+                        Console.WriteLine("Option 6: Clear the list");
+                        Console.WriteLine("Option 7: Quit");
+                        Console.WriteLine();
+                        Console.Write("Pick your option (1 - 7): ");
+                        choice = Console.ReadLine();
+                        choice = choice.Trim();
+                        while (choice != "1" && choice != "2" && choice != "3" && choice != "4" && choice != "5" && choice != "6" && choice != "7")
+                        {
+                            Console.Write("Invalid Input. Try again: ");
+                            choice = Console.ReadLine();
+                            choice = choice.Trim();
+                        }
+
+                        // Remove by index
+
+                        if (choice == "1")
+                        {
+                            int removeNum;
+                            Console.WriteLine();
+                            Console.Write("Enter the corresponding number of the vegetable you'd like to be removed: ");
+                            while (!int.TryParse(Console.ReadLine(), out removeNum))
+                            {
+                                Console.Write("Invalid Input. Try again: ");
+                            }
+                            while (removeNum > vegetables.Count || removeNum <= 0)
+                            {
+                                Console.Write("Number must be within the range of the vegetables' numbers. Try again: ");
+                                while (!int.TryParse(Console.ReadLine(), out removeNum))
+                                {
+                                    Console.Write("Invalid Input. Try again: ");
+                                }
+                            }
+                            vegetables.RemoveAt(removeNum - 1);
+                            Console.WriteLine();
+                            Console.WriteLine($"Removing vegetable #{removeNum}. Here's an updated list:");
+                            DisplayVegetables(vegetables);
+                            Console.WriteLine();
+                            Console.WriteLine("Press 'ENTER' to select another option.");
+                            Console.ReadLine();
+                        }
+                    }
+                }
             }
         }
 
@@ -290,6 +356,14 @@ namespace Part_7___Lists_Assignment
                 {
                     Console.WriteLine("]");
                 }
+            }
+        }
+
+        public static void DisplayVegetables(List<string> vegetables)
+        {
+            for (int i = 0; i < vegetables.Count; i++)
+            {
+                Console.WriteLine($"{i + 1} - {vegetables[i]}");
             }
         }
     }
