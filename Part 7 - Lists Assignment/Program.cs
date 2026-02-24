@@ -12,7 +12,6 @@ namespace Part_7___Lists_Assignment
             List<string> vegetables = new List<string>(["CARROT", "BEET", "CELERY", "RADISH", "CABBAGE"]);
             bool done = false;
             string choice = "";
-            Console.SetWindowSize(150, 40);
 
 
             for (int i = 0; i < 25; i++)
@@ -28,7 +27,6 @@ namespace Part_7___Lists_Assignment
                 choice = "";
                 Console.Clear();
 
-                Console.SetCursorPosition(53, 2);
                 Console.WriteLine("Welcome to my Lists Programming Assignment!");
                 Console.WriteLine();
                 Console.WriteLine();
@@ -209,7 +207,7 @@ namespace Part_7___Lists_Assignment
                             Console.ReadLine();
                         }
 
-                        // Print the smallest value
+                        // Print the average and sum
 
                         else if (choice == "8")
                         {
